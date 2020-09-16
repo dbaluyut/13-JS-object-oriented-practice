@@ -51,27 +51,29 @@ function expect(target) {
 // Only add code to *THIS* section!
 
 // ????????
-function Dog({ color, hungry, status }) {
-  // this.color = color
-  this.status = "normal"
-  // this.hungry = hungry
-  this.color = color
-  if (this.hasOwnProperty("color")) {
-    this.color = color
-  } else {
-    this.color = "n/a"
-  }
-  this.hungry = hungry
 
-  if (this.hasOwnProperty("hungry")) {
-    this.hungry = hungry
-  } else {
-    this.hungry = true
+function Dog(object) {
+  this.status = "normal"
+  if (object) {
+    this.color = object.color
+  }
+  if (object) {
+    if (object.hasOwnProperty("hungry")) {
+      this.hungry = object.hungry
+    } else {
+      this.hungry = true
+    }
   }
 }
 
-function Human() {}
-
+function Human(object) {
+  this.cool = true
+  if (object) {
+    if (object.hasOwnProperty("cool")) this.cool = true
+  } else {
+    this.cool = false
+  }
+}
 Human.prototype.feed = function (Dog) {
   Dog.hungry = false
 }
@@ -80,34 +82,28 @@ Human.prototype.pet = function (Dog) {
   Dog.status = "happy"
 }
 
-// Dog.prototype.sayName = function () {
-//   console.log("this is a test")
-// }
-
-// function Dog(object) {}
-
-// function Dog(object) {
-//   this.status = "normal"
-//   if (object) {
-//     this.color = object.color
-//   }
-//   if (object) {
-//     if (object.hasOwnProperty("hungry")) {
-//       this.hungry = object.hungry
-//     } else {
-//       this.hungry = true
-//     }
-//   }
-// }
-
-// function Human(object) {
-//   this.cool = true
-//   if (object) {
-//     if (object.hasOwnProperty("cool")) this.cool = true
+// function Person(config) {
+//   if (config) {
+//     this.eyeColor = config.color
 //   } else {
-//     this.cool = false
+//     this.eyeColor = "brown"
+//   }
+//   if (config) {
+//     this.age = config.age
+//   } else {
+//     this.age = 18
 //   }
 // }
+
+// const person = new Person({
+//   eyeColor: "green",
+//   age: 22,
+// })
+
+// const person2 = new Person()
+
+// const person3 = new Person({ age: 55 })
+
 // Human.prototype.feed = function (Dog) {
 //   Dog.hungry = false
 // }
